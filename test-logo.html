@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo Test</title>
+</head>
+<body>
+    <h1>Your Artisans Hub Logo Test</h1>
+    <p>If your logo appears below, the file is correctly placed:</p>
+    <img src="logo.jpg" alt="Artisans Hub Logo" style="width: 200px; height: auto; border: 2px solid #333;">
+    
+    <h2>Logo Details:</h2>
+    <p>File path: /logo.jpg</p>
+    <p>Expected to show your ArtisanHUblogo.jpg image</p>
+    
+    <script>
+        const img = document.querySelector('img');
+        img.onload = function() {
+            console.log('✅ Logo loaded successfully!');
+            document.body.style.backgroundColor = '#d4f4dd';
+        };
+        img.onerror = function() {
+            console.log('❌ Logo failed to load');
+            document.body.style.backgroundColor = '#f4d4d4';
+            this.style.display = 'none';
+            this.insertAdjacentHTML('afterend', '<p style="color: red;">❌ Logo file not found!</p>');
+        };
+    </script>
+</body>
+</html>
