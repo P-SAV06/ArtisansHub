@@ -40,7 +40,7 @@ const ChatbotPage = () => {
     setIsTyping(true);
 
     try {
-      const response = await axios.post('/api/chatbot', {
+      const response = await axios.post('https://artisans-hub-backend.railway.app/api/chatbot', {
         message: inputMessage
       });
 

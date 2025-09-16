@@ -3,75 +3,50 @@ import React, { useState } from 'react';
 const Logo = ({ 
   width = "120", 
   height = "40", 
-  className = "",
-  variant = "default" // "default", "white", "dark"
+  className = ""
 }) => {
   const [imageError, setImageError] = useState(false);
-  const [logoSrc, setLogoSrc] = useState('/logo.jpg?v=' + new Date().getTime());
-
-  const getStyles = () => {
-    const baseStyle = {
-      width: width + 'px',
-      height: height + 'px',
-      objectFit: 'contain',
-      maxWidth: '100%',
-      display: 'block'
-    };
-
-    switch (variant) {
-      case 'white':
-        return {
-          ...baseStyle,
-          filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)'
-        };
-      case 'dark':
-        return {
-          ...baseStyle,
-          filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)'
-        };
-      default:
-        return baseStyle;
-    }
-  };
-
+  const logoSrc = "/logo.jpg?v=" + Date.now();
+  
   const handleImageError = () => {
-    if (logoSrc.includes('/logo.jpg')) {
-      // Try PNG fallback
-      console.warn('Logo JPG not found, trying PNG fallback');
-      setLogoSrc('/logo.png?v=' + Date.now());
-    } else {
-      // Final fallback to text
-      console.warn('Logo images not found, using text fallback');
-      setImageError(true);
-    }
+    console.log('Logo failed to load:', logoSrc);
+    setImageError(true);
   };
 
-  // If image failed to load, show text logo as fallback
   if (imageError) {
     return (
-      <div className={`logo-fallback ${className}`} style={{
-        width: width + 'px',
-        height: height + 'px',
-        display: 'flex',
-        alignItems: 'center',
-        fontSize: '18px',
-        fontWeight: 'bold',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        color: 'white',
-        padding: '8px 12px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(102, 126, 234, 0.3)'
-      }}>
+      <div 
+        className={`logo-fallback ${className}`} 
+        style={{
+          width: width + 'px',
+          height: height + 'px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          color: 'white',
+          padding: '8px 12px',
+          borderRadius: '8px',
+          fontWeight: 'bold',
+          fontSize: '16px'
+        }}
+      >
         🎨 Artisans Hub
       </div>
     );
   }
-
+  
   return (
     <img 
       src={logoSrc}
       alt="Artisans Hub Logo" 
-      style={getStyles()}
+      style={{
+        width: width + 'px',
+        height: height + 'px',
+        objectFit: 'contain',
+        maxWidth: '100%',
+        display: 'block'
+      }}
       className={`logo ${className}`}
       onError={handleImageError}
     />

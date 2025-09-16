@@ -53,7 +53,7 @@ const CategoryPage = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/products?category=${currentCategory.name}`);
+      const response = await axios.get(`https://artisans-hub-backend.railway.app/api/products?category=${currentCategory.name}`);
       
       if (response.data.success) {
         setProducts(response.data.products);

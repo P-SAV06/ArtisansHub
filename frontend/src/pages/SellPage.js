@@ -65,7 +65,7 @@ const SellPage = () => {
         imageData = await fileToBase64(selectedImage);
       }
 
-      const response = await axios.post('/api/upload-analyze', {
+      const response = await axios.post('https://artisans-hub-backend.railway.app/api/upload-analyze', {
         image: imageData
       });
 
@@ -129,7 +129,7 @@ const SellPage = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post('/api/create-listing', {
+      const response = await axios.post('https://artisans-hub-backend.railway.app/api/create-listing', {
         seller_name: sellerDetails.name,
         seller_mobile: sellerDetails.mobile,
         seller_location: sellerDetails.location,

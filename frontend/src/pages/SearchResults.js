@@ -22,7 +22,7 @@ const SearchResults = () => {
   const searchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/products?search=${encodeURIComponent(searchQuery)}`);
+      const response = await axios.get(`https://artisans-hub-backend.railway.app/api/products?search=${encodeURIComponent(searchQuery)}`);
       
       if (response.data.success) {
         setProducts(response.data.products);
